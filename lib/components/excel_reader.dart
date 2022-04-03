@@ -11,7 +11,6 @@ class ExcelReader {
     int flag = 0;
     List result = [];
     for (var table in excel.tables.keys) {
-      print('Samarth Shah - ' + table);
       for (var row in excel.tables[table]!.rows) {
         if (row[2] == arg) {
           rowNo = row[0];
@@ -19,9 +18,7 @@ class ExcelReader {
         }
         if (row[0] == rowNo && flag == 1) {
           result = row;
-          
-        print(result);
-        return result;
+          return result;
         }
       }
     }

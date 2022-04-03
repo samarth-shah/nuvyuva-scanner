@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:nuvyuva_qrscanner/components/excel_reader.dart';
 
+// ignore: must_be_immutable
 class Results extends StatefulWidget {
-
   @override
   _ResultsState createState() => _ResultsState();
   String argument;
@@ -30,8 +30,13 @@ class _ResultsState extends State<Results> {
       isLoading = false;
     });
 
-    if(result[0] == null){
-      result = ['Not Alloted',' ${widget.argument}','Not Alloted','Not Alloted'];
+    if (result[0] == null) {
+      result = [
+        'Not Alloted',
+        ' ${widget.argument}',
+        'Not Alloted',
+        'Not Alloted'
+      ];
     }
   }
 
@@ -40,8 +45,6 @@ class _ResultsState extends State<Results> {
     super.initState();
     getNameFromApi();
   }
-
-  // DataReceiver dataReceiver = new DataReceiver();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,8 @@ class _ResultsState extends State<Results> {
                       ),
                       SizedBox(
                         height: 30,
-                      ),Text(
+                      ),
+                      Text(
                         '${result[1]}',
                         style: TextStyle(
                           color: Colors.white,
@@ -98,11 +102,7 @@ class _ResultsState extends State<Results> {
                 color: Colors.green,
                 textColor: Colors.white,
                 onPressed: () {
-                  // dataReceiver.passUcode();
-                  // Navigator.of(context).pop();
-                  // setState(() {
-                  //   flag = false;
-                  // });
+                  //TODO: add something so that that person come's again so it shows some error
                 },
                 child: Text(
                   'Yes',
@@ -119,20 +119,12 @@ class _ResultsState extends State<Results> {
                 minWidth: 120,
                 color: Colors.redAccent,
                 textColor: Colors.white,
-                // onPressed: () {
-                  onPressed: () async {
-                String codeScanner =
-                    await BarcodeScanner.scan(); //barcode scanner
-                String qrCodeResult = codeScanner;
-                print('Sam - ' + qrCodeResult);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Results(argument: qrCodeResult)));
-              // },
+                onPressed: () async {
+                  String codeScanner = await BarcodeScanner.scan();
+                  String qrCodeResult = codeScanner;
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Results(argument: qrCodeResult)));
                   Navigator.of(context).pop();
-                  // Navigator.of(context).pushNamed(Otp.routeName);
-                  // setState(() {
-                  //   flag = false;
-                  // });
                 },
                 child: Text(
                   'Retry',

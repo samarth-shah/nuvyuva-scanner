@@ -73,7 +73,6 @@ class HomePage extends StatelessWidget {
                 String codeScanner =
                     await BarcodeScanner.scan(); //barcode scanner
                 qrCodeResult = codeScanner;
-                print('Sam - ' + qrCodeResult);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => Results(argument: qrCodeResult)));
               },

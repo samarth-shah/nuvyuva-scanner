@@ -1,8 +1,7 @@
-// ignore_for_file: must_be_immutable, prefer_const_constructors, deprecated_member_use, use_key_in_widget_constructors, duplicate_ignore
+// ignore_for_file: must_be_immutable, prefer_const_constructors, deprecated_member_use, use_key_in_widget_constructors, duplicate_ignore, import_of_legacy_library_into_null_safe
 
 import 'package:flutter/material.dart';
 import 'screens/result.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// ignore: use_key_in_widget_constructors
 class HomePage extends StatelessWidget {
   String qrCodeResult = " ";
 

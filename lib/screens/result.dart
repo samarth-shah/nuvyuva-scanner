@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_declarations, unnecessary_new, avoid_print, prefer_const_constructors, deprecated_member_use
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_declarations, unnecessary_new, avoid_print, prefer_const_constructors, deprecated_member_use, import_of_legacy_library_into_null_safe
 
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';

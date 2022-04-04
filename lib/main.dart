@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nuv Yuva 2021',
+      title: 'Nuv Yuva 2022',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
@@ -53,15 +53,26 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(height: 20,),
+            Container(
+              padding: const EdgeInsets.all(50),
+              decoration: BoxDecoration(
+                color: Color(0xff69349C),
+                image: DecorationImage(
+                  image: AssetImage('assets/navrachana_logo.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             SizedBox(
-              height: 50,
+              height: 180,
             ),
             Text(
-              "  NUV YUVA 2022",
+              " NUV YUVA 2022",
               style: TextStyle(color: Colors.white, fontSize: 35),
             ),
             SizedBox(
-              height: 250,
+              height: 150,
             ),
             FlatButton(
               //height: 180,
@@ -86,7 +97,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 75,
+              height: 65,
             ),
           ],
         ),

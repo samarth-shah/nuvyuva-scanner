@@ -2,6 +2,7 @@
 
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:nuvyuva_qrscanner/components/excel_reader.dart';
@@ -20,12 +21,13 @@ class Results extends StatefulWidget {
 class _ResultsState extends State<Results> {
   bool flag = false;
   bool isLoading = true;
+  String fileName = 'FInalList.xlsx';
   ExcelReader excelReader = new ExcelReader();
 
   List result = [];
 
   void getNameFromApi() async {
-    result = await excelReader.readExcelFile('FInalList.xlsx', widget.argument);
+    result = await excelReader.readExcelFile(fileName, widget.argument);
     setState(() {
       isLoading = false;
     });
@@ -79,6 +81,16 @@ class _ResultsState extends State<Results> {
                           fontSize: 32,
                         ),
                       ),
+                      // SizedBox(
+                      //   height: 30,
+                      // ),
+                      // Text(
+                      //   '${result[8]}',
+                      //   style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontSize: 24,
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 30,
                       ),
@@ -101,8 +113,18 @@ class _ResultsState extends State<Results> {
                 minWidth: 120,
                 color: Colors.green,
                 textColor: Colors.white,
-                onPressed: () {
+                onPressed: () async {
                   //TODO: add something so that that person come's again so it shows some error
+                  bool flag = await excelReader.enteredPerson(
+                      fileName, widget.argument);
+
+                  if (flag) {
+                    Fluttertoast.showToast(msg: 'Successfully Entered');
+                    Navigator.pop(context);
+                  }
+                  else{
+                    Fluttertoast.showToast(msg: 'Already Entered');
+                  }
                 },
                 child: Text(
                   'Yes',

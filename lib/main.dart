@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'screens/result.dart';
 import 'package:barcode_scan_fix/barcode_scan.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Nuv Yuva 2022',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ).copyWith(textTheme: GoogleFonts.quicksandTextTheme()),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.deepPurple,
+      // ).copyWith(textTheme: GoogleFonts.quicksandTextTheme()),
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
@@ -83,7 +83,9 @@ class HomePage extends StatelessWidget {
                     await BarcodeScanner.scan(); //barcode scanner
                 qrCodeResult = codeScanner;
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Results(argument: qrCodeResult)));
+                    builder: (context) => Results(
+                      uuid: qrCodeResult
+                      )));
               },
               child: Text(
                 "Scan QR Code",

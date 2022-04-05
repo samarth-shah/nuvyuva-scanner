@@ -3,43 +3,37 @@
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:nuvyuva_qrscanner/components/details.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:nuvyuva_qrscanner/components/excel_reader.dart';
+
+import '../model/get_user_details_exchange.dart';
 
 // ignore: must_be_immutable
 class Results extends StatefulWidget {
   @override
   _ResultsState createState() => _ResultsState();
-  String argument;
+  String uuid;
   Results({
     Key? key,
-    required this.argument,
+    required this.uuid,
   }) : super(key: key);
 }
 
 class _ResultsState extends State<Results> {
   bool flag = false;
   bool isLoading = true;
-  String fileName = 'FInalList.xlsx';
   ExcelReader excelReader = new ExcelReader();
-
-  List result = [];
+  Details result = Details(name: 'null', namespace: 'null', type: 'null', repeat: false);
 
   void getNameFromApi() async {
-    result = await excelReader.readExcelFile(fileName, widget.argument);
+    // result = await excelReader.readExcelFile(fileName, widget.argument);
+    result = await UserDetailsExchange().getUser(widget.uuid);
     setState(() {
       isLoading = false;
     });
+    print('Sam - '+result.toString());
 
-    if (result[0] == null) {
-      result = [
-        'Not Alloted',
-        ' ${widget.argument}',
-        'Not Alloted',
-        'Not Alloted'
-      ];
-    }
   }
 
   @override
@@ -55,11 +49,11 @@ class _ResultsState extends State<Results> {
         backgroundColor: Color(0xFF2D172D),
         title: Text(
           'Results',
-          style: GoogleFonts.raleway(
-              textStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          )),
+          // style: GoogleFonts.raleway(
+          //     textStyle: TextStyle(
+          //   fontWeight: FontWeight.bold,
+          //   fontSize: 24,
+          // )),
         ),
         centerTitle: true,
       ),
@@ -75,30 +69,30 @@ class _ResultsState extends State<Results> {
                     )
                   : Column(children: [
                       Text(
-                        '${result[3]}',
+                        '${result.name}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 32,
                         ),
                       ),
-                      // SizedBox(
-                      //   height: 30,
-                      // ),
-                      // Text(
-                      //   '${result[8]}',
-                      //   style: TextStyle(
-                      //     color: Colors.white,
-                      //     fontSize: 24,
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 30,
                       ),
                       Text(
-                        '${result[1]}',
+                        '${result.namespace}',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        '${result.type}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
                         ),
                       ),
                       SizedBox(
@@ -113,21 +107,15 @@ class _ResultsState extends State<Results> {
                 minWidth: 120,
                 color: Colors.green,
                 textColor: Colors.white,
-                onPressed: () async {
-                  //TODO: add something so that that person come's again so it shows some error
-                  bool flag = await excelReader.enteredPerson(
-                      fileName, widget.argument);
-
-                  if (flag) {
-                    Fluttertoast.showToast(msg: 'Successfully Entered');
-                    Navigator.pop(context);
-                  }
-                  else{
-                    Fluttertoast.showToast(msg: 'Already Entered');
-                  }
-                },
+                disabledColor: Colors.grey,
+                onPressed: result.repeat
+                    ? null
+                    : () async {
+                        Fluttertoast.showToast(msg: 'Successfully Entered');
+                        Navigator.pop(context);
+                      },
                 child: Text(
-                  'Yes',
+                  !result.repeat ? 'Yes' : 'Already Entered',
                   style: TextStyle(
                     fontSize: 18,
                   ),
@@ -145,7 +133,7 @@ class _ResultsState extends State<Results> {
                   String codeScanner = await BarcodeScanner.scan();
                   String qrCodeResult = codeScanner;
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Results(argument: qrCodeResult)));
+                      builder: (context) => Results(uuid: qrCodeResult)));
                   Navigator.of(context).pop();
                 },
                 child: Text(
@@ -155,16 +143,16 @@ class _ResultsState extends State<Results> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                widget.argument,
-                style: TextStyle(
-                  color: Color(0xFF2A112D),
-                  fontSize: 6,
-                ),
-              )
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Text(
+              //   widget.uuid,
+              //   style: TextStyle(
+              //     color: Color(0xFF2A112D),
+              //     fontSize: 6,
+              //   ),
+              // )
             ],
           ),
         ),

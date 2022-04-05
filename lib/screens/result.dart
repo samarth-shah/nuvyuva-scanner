@@ -130,14 +130,14 @@ class _ResultsState extends State<Results> {
                 color: Colors.redAccent,
                 textColor: Colors.white,
                 onPressed: () async {
-                  String codeScanner = await BarcodeScanner.scan();
-                  String qrCodeResult = codeScanner;
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Results(uuid: qrCodeResult)));
+                  // String codeScanner = await BarcodeScanner.scan();
+                  // String qrCodeResult = codeScanner;
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => Results(uuid: qrCodeResult)));
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  'Retry',
+                  'No',
                   style: TextStyle(
                     fontSize: 18,
                   ),

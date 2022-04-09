@@ -33,13 +33,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2D172D),
+        backgroundColor: Color(0xFFef3c49),
         title: Text(
           'NUV YUVA 💜',
         ),
         centerTitle: true,
       ),
-      backgroundColor: Color.fromARGB(255, 78, 38, 116),
+      backgroundColor: Color.fromARGB(255, 90, 175, 225),
       body: Container(
         padding: const EdgeInsets.all(50),
         // decoration: BoxDecoration(
@@ -53,11 +53,10 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 20,),
             Container(
-              padding: const EdgeInsets.all(50),
+              padding: const EdgeInsets.all(35),
               decoration: BoxDecoration(
-                color: Color(0xff69349C),
+                // color: Color(0xff69349C),
                 image: DecorationImage(
                   image: AssetImage('assets/navrachana_logo.png'),
                   fit: BoxFit.cover,
@@ -65,27 +64,38 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 180,
+              height: 50,
+            ),
+            Container(
+              padding: const EdgeInsets.all(100),
+              decoration: BoxDecoration(
+                // color: Color(0xff69349C),
+                image: DecorationImage(
+                  image: AssetImage('assets/nuv_yuva_logo.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 60,
             ),
             Text(
               " NUV YUVA 2022",
               style: TextStyle(color: Colors.white, fontSize: 35),
             ),
             SizedBox(
-              height: 150,
+              height: 70,
             ),
             FlatButton(
               //height: 180,
-              color: Color(0xCC510A32),
+              color: Color(0xFFef3c49),
               padding: EdgeInsets.all(15),
               onPressed: () async {
                 String codeScanner =
                     await BarcodeScanner.scan(); //barcode scanner
                 qrCodeResult = codeScanner;
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Results(
-                      uuid: qrCodeResult
-                      )));
+                    builder: (context) => Results(uuid: qrCodeResult)));
               },
               child: Text(
                 "Scan QR Code",

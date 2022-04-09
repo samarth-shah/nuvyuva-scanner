@@ -46,7 +46,7 @@ class _ResultsState extends State<Results> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2D172D),
+        backgroundColor: Color(0xFFef3c49),
         title: Text(
           'Results',
           // style: GoogleFonts.raleway(
@@ -58,7 +58,7 @@ class _ResultsState extends State<Results> {
         centerTitle: true,
       ),
       body: Container(
-        color: Color(0xFF1D0E1D),
+        color: Color.fromARGB(255,90,175,225),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,7 +69,7 @@ class _ResultsState extends State<Results> {
                     )
                   : Column(children: [
                       Text(
-                        '${result.name}',
+                        result.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 32,
@@ -79,7 +79,7 @@ class _ResultsState extends State<Results> {
                         height: 30,
                       ),
                       Text(
-                        '${result.namespace}',
+                        result.namespace,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -89,7 +89,7 @@ class _ResultsState extends State<Results> {
                         height: 30,
                       ),
                       Text(
-                        '${result.type}',
+                        result.type,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 32,
@@ -105,7 +105,7 @@ class _ResultsState extends State<Results> {
               FlatButton(
                 height: 50,
                 minWidth: 120,
-                color: Colors.green,
+                color: Color(0xFFffcb22),
                 textColor: Colors.white,
                 disabledColor: Colors.grey,
                 onPressed: result.repeat

@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:excel/excel.dart';
 import 'package:nuvyuva_qrscanner/components/details.dart';
 import 'package:dio/dio.dart';
 
@@ -9,7 +6,7 @@ class UserDetailsExchange {
   @override
   Future getUser(String uuid) async {
     var url = Uri.parse(
-        'http://nuvyuvaproduction-env.eba-rf3uxm2j.us-east-1.elasticbeanstalk.com/GetData_from_uuid');
+        'http://nuvyuvafullproduction-env.eba-4hxpmamt.us-east-1.elasticbeanstalk.com/GetData_from_uuid');
         print('UUID : '+ uuid);
 
     final queryParameters = {
